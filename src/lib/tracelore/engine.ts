@@ -365,8 +365,10 @@ export function runDiscovery(receipts: Receipt[], index: GraphIndex): Discovery[
     });
   }
 
-  // Keep only discoveries whose receipts exist, and annotate isolation
-  return out.filter((d) => d.receiptIds.every((id) => index.byId.has(id)));
+  // De-duplicate related records and keep only discoveries whose receipts exist
+  return out
+    .map((d) => ({ ...d, receiptIds: [...new Set(d.receiptIds)] }))
+    .filter((d) => d.receiptIds.every((id) => index.byId.has(id)));
 }
 
 function median(values: number[]) {
