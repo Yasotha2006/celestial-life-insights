@@ -21,8 +21,8 @@ import { toast } from "sonner";
 
 export const Route = createFileRoute("/galaxy")({
   validateSearch: (search: Record<string, unknown>) => ({
-    panel: typeof search.panel === "string" ? search.panel : "details",
-    tour: search.tour === true || search.tour === "true",
+    panel: typeof search["panel"] === "string" ? (search["panel"] as string) : "details",
+    tour: search["tour"] === true || search["tour"] === "true",
   }),
   head: () => ({
     meta: [

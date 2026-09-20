@@ -406,8 +406,8 @@ export interface Filters {
   query: string;
   types: string[];
   timesOfDay: TimeOfDay[];
-  from?: string;
-  to?: string;
+  from?: string | undefined;
+  to?: string | undefined;
   linkage: "all" | "connected" | "isolated";
 }
 
